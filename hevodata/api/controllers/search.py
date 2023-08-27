@@ -18,7 +18,7 @@ class FileSearchView:
     @staticmethod
     def choose_folder(request):
         if request.method == 'GET':
-            client_id = request.session['current_client_id']
+            client_id = request.GET['client_id']
             return render(request, "choose_folder.html", context={"client_id": client_id})
         else:  # POST
             # save the selected folder-id in session and move them to the Search Text Page
@@ -43,6 +43,8 @@ class FileSearchView:
         return Response({
             "files": FileSerializer(response, many=True).data
         })
+
+
 
     @staticmethod
     @api_view(['GET'])

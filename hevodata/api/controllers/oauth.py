@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK
@@ -22,5 +23,4 @@ class OAuthAPIView:
         scope = request.GET.get("scope", None)
 
         google_credentials = OAuthService.callback_handler(state=state, code=code, scope=scope)
-        request.session['current_client_id'] = google_credentials.client_id
-        return redirect("choose-folder")
+        return redirect(reverse("choose-folder") + f"?client_id={google_credentials.client_id}")

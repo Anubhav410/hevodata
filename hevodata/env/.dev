@@ -9,3 +9,4 @@ DB_PORT=5432
 
 GOOGLE_CLIENT_ID="849467843131-srbs7h7j2kq01r2jd4gsu9l13r269eea.apps.googleusercontent.com"
 GOOGLE_CLIENT_SECRET="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"
+BASE_URL=https://3783-2401-4900-1cc5-5986-76be-3ac3-41c3-5361.ngrok-free.app/
