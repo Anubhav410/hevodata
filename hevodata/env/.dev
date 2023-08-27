@@ -5,3 +5,7 @@ DB_NAME=hevodata
 DB_USERNAME=root
 DB_PASS=root
 DB_PORT=5432
+
+
+GOOGLE_CLIENT_ID="849467843131-srbs7h7j2kq01r2jd4gsu9l13r269eea.apps.googleusercontent.com"
+GOOGLE_CLIENT_SECRET="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"
