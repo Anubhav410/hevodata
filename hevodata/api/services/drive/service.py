@@ -1,6 +1,5 @@
 from api.models import Files, Channels
 from api.services.drive.factory import drive_factory
-from api.services.oauth.service import OAuthService
 
 
 class DriveService:

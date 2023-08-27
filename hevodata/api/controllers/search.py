@@ -32,8 +32,6 @@ class FileSearchView:
             "files": FileSerializer(response, many=True).data
         })
 
-
-
     @staticmethod
     @api_view(['GET'])
     def download_file(request):
