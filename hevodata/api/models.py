@@ -22,3 +22,9 @@ class Files(Model):
     file_content = TextField(null=True)
     created_at = DateTimeField(auto_now=False, auto_now_add=True)
     updated_at = DateTimeField(auto_now=True)
+
+
+class Channels(Model):
+    client_id = CharField(max_length=500)
+    channel_id = CharField(max_length=500)
+    file_id = CharField(max_length=500)

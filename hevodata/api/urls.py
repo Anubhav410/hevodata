@@ -9,6 +9,6 @@ urlpatterns = [
     path('oauth/callback', OAuthAPIView.callback_handler),
     path('files/download', FileSearchView.download_file),
     path('search', FileSearchView.search_api, name='search-api'),
-    path('drive/watcher', DriveAPIView.watcher_callback, name='drive-watcher'),
+    path('drive/watcher7', DriveAPIView.watcher_callback, name='drive-watcher'),
 
 ]

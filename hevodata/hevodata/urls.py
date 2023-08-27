@@ -17,11 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from api.controllers.drive import DriveAPIView
 from api.controllers.search import FileSearchView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include('api.urls')),
-    path('setup/choose-folder', FileSearchView.choose_folder, name='choose-folder'),
+    path('setup/choose-folder', DriveAPIView.choose_folder, name='choose-folder'),
     path('search-view', FileSearchView.search_view, name='search-view'),
 ]

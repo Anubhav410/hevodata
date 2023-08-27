@@ -16,22 +16,10 @@ class FileSerializer(ModelSerializer):
 
 class FileSearchView:
     @staticmethod
-    def choose_folder(request):
-        if request.method == 'GET':
-            client_id = request.GET['client_id']
-            return render(request, "choose_folder.html", context={"client_id": client_id})
-        else:  # POST
-            # save the selected folder-id in session and move them to the Search Text Page
-            folder_id = request.POST['folder_id']
-            client_id = request.POST['client_id']
-            SearchService.start_file_injestion(client_id=client_id, folder_id=folder_id)
-            return render(request, "search_text.html", context={"client_id": client_id})
-
-    @staticmethod
     @api_view(['GET'])
     def search_view(request):
         if request.method == 'GET':
-            client_id = request.session['current_client_id']
+            client_id = request.GET['client_id']
             return render(request, "search_text.html", context={"client_id": client_id})
 
     @staticmethod
