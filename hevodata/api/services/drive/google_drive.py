@@ -7,10 +7,31 @@ from api.services.oauth.service import OAuthService
 
 class GoogleDrive(BaseDrive):
     def get_files(self, client_id, folder_id):
-        credentials = OAuthService.get_credentials(client_id)
-        # files =
+        files = []
+        creds = OAuthService.get_credentials(client_id=client_id)
+        try:
+            api_url = f"https://www.googleapis.com/drive/v3/files?q='{folder_id}' in parents"
+            auth_token = creds.token
 
-    def get_file_data(self, client_id, file_id, credentials=None):
+            # Create headers with the authentication token
+            headers = {
+                "Authorization": f"Bearer {auth_token}"
+            }
+
+            # Make a GET request to the API with the headers
+            response = requests.get(api_url, headers=headers)
+            # Check if the request was successful (status code 200)
+            if response.status_code == 200:
+                # Print the response content (JSON or text)
+                files = response.json()['files']
+            else:
+                print(f"Request failed with status code: {response.status_code}")
+        except HttpError as error:
+            print(F'An error occurred: {error}')
+
+        return files
+
+    def get_file_data(self, client_id, file_id):
         creds = OAuthService.get_credentials(client_id=client_id)
         try:
             api_url = f"https://www.googleapis.com/drive/v3/files/{file_id}?alt=media"
@@ -32,6 +53,5 @@ class GoogleDrive(BaseDrive):
                 print(f"Request failed with status code: {response.status_code}")
         except HttpError as error:
             print(F'An error occurred: {error}')
-            file = None
 
         return response.content

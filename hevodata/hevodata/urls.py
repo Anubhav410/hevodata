@@ -17,11 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from api.controllers.choose_folder import FileSearchView
+from api.controllers.search import FileSearchView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include('api.urls')),
-    path('search/choose-folder', FileSearchView.choose_folder, name='choose-folder'),
-
+    path('setup/choose-folder', FileSearchView.choose_folder, name='choose-folder'),
+    path('search-view', FileSearchView.search_view, name='search-view'),
 ]

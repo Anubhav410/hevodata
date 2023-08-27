@@ -3,8 +3,11 @@
 
 <div class="container d-flex justify-content-center align-items-center vh-100">
     <div class="text-center">
-        <input type="text" class="form-control mb-3" placeholder="Enter text">
-        <button class="btn btn-primary">Submit</button>
+        <form method="post">
+            <input type="text" class="form-control mb-3" placeholder="Enter Source Folder Id" name="folder_id">
+            <input type="hidden" name="client_id" value="{{client_id}}">
+            <button class="btn btn-primary" type="submit">Start Injestion</button>
+        </form>
     </div>
 </div>
 {% endblock content %}

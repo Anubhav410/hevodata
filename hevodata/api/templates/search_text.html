@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="input-group mb-3">
+                <input type="text" id="searchInput" class="form-control" placeholder="Enter search keywords">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" id="searchButton">Search</button>
+                </div>
+            </div>
+            <ul id="resultsList" class="list-group">
+                <!-- Results will be added dynamically here -->
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Function to make API call and display results
+    function makeAPICallAndDisplayResults() {
+      const searchInput = document.getElementById('searchInput').value;
+      const resultsList = document.getElementById('resultsList');
+
+      var formdata = new FormData();
+      formdata.append("client_id", "{{client_id}}");
+      formdata.append("search_text", searchInput);
+
+     var requestOptions = {
+       method: 'POST',
+       body: formdata
+     };
+
+     resultsList.innerHTML = ''; // Clear previous results
+
+    fetch("api/v1/search", requestOptions)
+      .then(response => response.json())
+      .then(result => {
+
+        result["files"].forEach(file => {
+        var name = file["file_name"];
+          const li = document.createElement('li');
+          li.className = 'list-group-item';
+          li.textContent = name;
+          resultsList.appendChild(li);
+        });
+
+      })
+      .catch(error => console.log('error', error));
+
+
+
+
+    }
+
+    function makeAPICall(){
+
+
+    }
+
+    // Attach click event handler to the search button
+    document.getElementById('searchButton').addEventListener('click', makeAPICallAndDisplayResults);
+</script>
+{% endblock content %}

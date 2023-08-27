@@ -6,4 +6,5 @@ class DriveService:
 
     @staticmethod
     def download_file(client_id, file_id):
-        return drive_factory().get_file_data(client_id=client_id, file_id=file_id)
+        # return drive_factory().get_file_data(client_id=client_id, file_id=file_id)
+        return drive_factory().get_files(client_id=client_id, folder_id=file_id)
