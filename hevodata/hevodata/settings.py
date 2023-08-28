@@ -158,4 +158,4 @@ GOOGLE_CONFIG = {"web": {
 
 USE_TZ = True
 
-WATCHER_URL = "https://3783-2401-4900-1cc5-5986-76be-3ac3-41c3-5361.ngrok-free.app/api/v1/drive/watcher7"
+WATCHER_URL = "https://d95c-2401-4900-1f29-3905-b7e7-320-7a1b-b67c.ngrok-free.app/api/v1/drive/watcher7"

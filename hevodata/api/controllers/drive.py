@@ -17,13 +17,12 @@ class DriveAPIView:
             # save the selected folder-id in session and move them to the Search Text Page
             folder_id = request.POST['folder_id']
             client_id = request.POST['client_id']
-            DriveService.start_file_injestion(client_id=client_id, folder_id=folder_id, setup_watcher=True)
+            setup_watcher = request.POST.get('setup_watcher', 'False') == 'True'
+            DriveService.start_file_injestion(client_id=client_id, folder_id=folder_id, setup_watcher=setup_watcher)
             return redirect(reverse('search-view') + f"?client_id={client_id}")
 
     @staticmethod
     @api_view(['POST'])
     def watcher_callback(request):
-        return Response(status=HTTP_200_OK)
-
         DriveService.update_event_handler(channel_id=request.headers['X-Goog-Channel-Id'])
         return Response(status=HTTP_200_OK)

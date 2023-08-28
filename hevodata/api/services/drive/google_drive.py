@@ -94,7 +94,7 @@ class GoogleDrive(BaseDrive):
     def get_file_info(self, client_id, file_id):
         creds = OAuthService.get_credentials(client_id=client_id)
         try:
-            api_url = f"https://www.googleapis.com/drive/v3/files/{file_id}"
+            api_url = f"https://www.googleapis.com/drive/v2/files/{file_id}"
             auth_token = creds.token
             # Create headers with the authentication token
             headers = {
