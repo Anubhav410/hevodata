@@ -1,10 +1,17 @@
+import logging
+
 from api.models import Files, Channels
 from api.services.drive.factory import drive_factory
+
+log = logging.getLogger(__name__)
 
 
 class DriveService:
     @staticmethod
     def start_file_injestion(client_id, folder_id, setup_watcher=True):
+        log.info(
+            f"starting folder injestion: folder_id: {folder_id}, client_id: {client_id}, setup_watcher: {setup_watcher}")
+
         drive = drive_factory()
         files = drive.get_files(client_id=client_id, folder_id=folder_id)
         if setup_watcher:
@@ -29,6 +36,7 @@ class DriveService:
 
     @staticmethod
     def update_event_handler(channel_id):
+        # todo: This is a naive approach. This will not scale, and we will have to
+        #  understand how Google Changes API works for this implementing to be more efficient
         channel = Channels.objects.get(channel_id=channel_id)
         DriveService.start_file_injestion(client_id=channel.client_id, folder_id=channel.file_id, setup_watcher=False)
-        # drive_factory().handle_channel_updates(channel_id)

@@ -1,3 +1,5 @@
+import logging
+
 from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -12,6 +14,9 @@ class FileSerializer(ModelSerializer):
     class Meta:
         model = Files
         fields = ['source_file_id', 'file_name']
+
+
+log = logging.getLogger(__name__)
 
 
 class FileSearchView:
